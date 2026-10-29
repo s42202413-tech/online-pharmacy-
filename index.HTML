@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Pharmacy | MediCare</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8fb;
+            color: #263238;
+        }
+
+        header {
+            background: #087f8c;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h1 {
+            font-size: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px;
+            color: white;
+            background: linear-gradient(120deg, #087f8c, #42b9a8);
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            margin-bottom: 25px;
+        }
+
+        .hero a {
+            display: inline-block;
+            padding: 12px 22px;
+            background: white;
+            color: #087f8c;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .search {
+            text-align: center;
+            padding: 30px 15px 10px;
+        }
+
+        .search input {
+            width: 90%;
+            max-width: 500px;
+            padding: 13px;
+            border: 1px solid #ccd5dc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .section {
+            padding: 35px 7%;
+        }
+
+        .section h2 {
+            text-align: center;
+            color: #087f8c;
+            margin-bottom: 25px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 22px;
+        }
+
+        .product {
+            background: white;
+            text-align: center;
+            padding: 25px 18px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #00000012;
+        }
+
+        .product .emoji {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .product h3 {
+            margin-bottom: 12px;
+        }
+
+        .product p {
+            margin: 10px 0;
+            color: #59666d;
+        }
+
+        .price {
+            color: #087f8c !important;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 11px 16px;
+            background: #087f8c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #05616b;
+        }
+
+        .cart {
+            background: white;
+            padding: 30px 7%;
+        }
+
+        .cart h2 {
+            color: #087f8c;
+            margin-bottom: 15px;
+        }
+
+        #cart-items p {
+            padding: 8px 0;
+        }
+
+        .contact {
+            text-align: center;
+            background: #e5f5f3;
+            padding: 35px 20px;
+            line-height: 2;
+        }
+
+        .contact h2 {
+            color: #087f8c;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #173b40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav {
+                line-height: 2.2;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>💊 MediCare Pharmacy</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#medicines">Medicines</a>
+            <a href="#cart">My Cart</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h2>Your Health, Our Priority</h2>
+        <p>Explore healthcare products in one convenient place.</p>
+        <a href="#medicines">Shop Now</a>
+    </section>
+
+    <section class="search">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for a product..."
+            oninput="searchProducts()"
+        >
+    </section>
+
+    <section class="section" id="medicines">
+        <h2>Our Products</h2>
+
+        <div class="products" id="productList">
+
+            <div class="product" data-name="paracetamol">
+                <div class="emoji">💊</div>
+                <h3>Paracetamol</h3>
+                <p>Common pain and fever relief medicine.</p>
+                <p class="price">ETB 50</p>
+                <button onclick="addToCart('Paracetamol', 50)">
+                    Add to Cart
+                </button>
+            </div>
+
+            <div class="product" data-name="vitamin c">
+                <div class="emoji">🍊</div>
+                <h3>Vitamin C</h3>
+                <p>Vitamin supplement.</p>
+                <p class="price">ETB 120</p>
+                <button onclick="addToCart('Vitamin C', 120)">
+                    Add to Cart
+                </button>
+            </div>
+
+            <div class="product" data-name="first aid kit">
+                <div class="emoji">🩹</div>
+                <h3>First Aid Kit</h3>
+                <p>Basic first aid supplies.</p>
+                <p class="price">ETB 250</p>
+                <button onclick="addToCart('First Aid Kit', 250)">
+                    Add to Cart
+                </button>
+            </div>
+
+            <div class="product" data-name="hand sanitizer">
+                <div class="emoji">🧴</div>
+                <h3>Hand Sanitizer</h3>
+                <p>Hand hygiene product.</p>
+                <p class="price">ETB 80</p>
+                <button onclick="addToCart('Hand Sanitizer', 80)">
+                    Add to Cart
+                </button>
+            </div>
+
+        </div>
+
+        <p id="noResults" style="display:none; text-align:center; margin-top:20px;">
+            No products found.
+        </p>
+    </section>
+
+    <section class="cart" id="cart">
+        <h2>🛒 My Shopping Cart</h2>
+        <p>Items: <strong id="cartCount">0</strong></p>
+
+        <div id="cart-items">
+            <p>Your cart is empty.</p>
+        </div>
+
+        <h3>Total: ETB <span id="total">0</span></h3>
+        <button onclick="clearCart()">Clear Cart</button>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@medicare.example</p>
+        <p>Phone: +251 900 000 000</p>
+        <p>Location: Ethiopia</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 MediCare Pharmacy. All rights reserved.</p>
+        <p>Educational demo website</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name: name, price: price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const container = document.getElementById("cart-items");
+            const count = document.getElementById("cartCount");
+            const totalElement = document.getElementById("total");
+
+            count.textContent = cart.length;
+            container.innerHTML = "";
+
+            if (cart.length === 0) {
+                container.textContent = "Your cart is empty.";
+            } else {
+                cart.forEach(function(item, index) {
+                    const row = document.createElement("p");
+                    row.textContent =
+                        (index + 1) + ". " + item.name +
+                        " - ETB " + item.price;
+                    container.appendChild(row);
+                });
+            }
+
+            const total = cart.reduce(function(sum, item) {
+                return sum + item.price;
+            }, 0);
+
+            totalElement.textContent = total;
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCart();
+        }
+
+        function searchProducts() {
+            const query = document
+                .getElementById("searchInput")
+                .value.toLowerCase();
+
+            const products = document.querySelectorAll(".product");
+            let visible = 0;
+
+            products.forEach(function(product) {
+                const name = product.dataset.name;
+
+                if (name.includes(query)) {
+                    product.style.display = "";
+                    visible++;
+                } else {
+                    product.style.display = "none";
+                }
+            });
+
+            document.getElementById("noResults").style.display =
+                visible === 0 ? "block" : "none";
+        }
+    </script>
+
+</body>
+</html>
